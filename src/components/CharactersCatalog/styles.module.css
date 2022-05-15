@@ -1,0 +1,36 @@
+.cardContainer {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card {
+width: 300px;
+}
+
+.card p {
+  text-align: center;
+}
+
+.paginationButtons {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-around;
+  margin: 3rem;
+}
+
+.paginationButtons button {
+  cursor: pointer;
+  width: 200px;
+  height: 100px;
+  background-color: black;
+  color: white;
+}
+
+.paginationButtons button:hover {
+  background: grey;
+}
