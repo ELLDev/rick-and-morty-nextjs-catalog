@@ -1,0 +1,18 @@
+.paginationContainer {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-around;
+  margin: 3rem;
+}
+
+.paginationContainer * {
+  cursor: pointer;
+  font-size: 3rem;
+  background-color: black;
+  color: white;
+}
+
+.paginationContainer *:hover {
+  background: grey;
+}

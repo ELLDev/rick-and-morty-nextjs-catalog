@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import CharactersCatalog from "../src/components/CharactersCatalog";
-import styles from "../styles/Home.module.css";
+import PaginatedItems from "../src/components/PaginatedItems";
 
 const Home: NextPage = () => {
   return (
@@ -12,8 +11,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <CharactersCatalog />
+      <main>
+        <PaginatedItems itemsPerPage={12} />
       </main>
     </>
   );

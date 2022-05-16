@@ -13,89 +13,109 @@ interface Character {
   status: string;
 }
 
-interface Info {
-  pages: number;
-  next: string;
-  prev: string;
+interface CharactersCatalogProps {
+  itemsPerPage: number;
+  itemOffset: number;
+  endOffset: number;
+  setMortyCharactersCount: (mortyCharactersCount: number) => void;
+  setPageCount: (pageCount: number) => void;
 }
 
-interface CatalogProps {
-  info: Info;
-  results: Character[];
-}
+export default function CharactersCatalog({
+  itemsPerPage,
+  itemOffset,
+  endOffset,
+  setMortyCharactersCount,
+  setPageCount,
+}: CharactersCatalogProps) {
+  const [allMortyCharacters, setAllMortyCharacters] = useState<Character[]>([]);
+  const [displayedMortyCharacters, setDisplayedMortyCharacters] = useState<
+    Character[]
+  >([]);
+  const [inputText, setInputText] = useState("");
 
-interface PagesInCatalogProps {}
+  const searchName = (name: string) => {
+    let allMortyCharactersCopy = { ...allMortyCharacters };
+    let length = allMortyCharacters.length || 0;
+    let regex = new RegExp(name, "i");
+    let filteredMortyCharactersCopy = [] as Character[];
 
-export default function CharactersCatalog() {
-  const [mortyCharacters, setMortyCharacters] = useState<CatalogProps>();
-  const [pagesInCatalog, setPagesInCatalog] = useState<PagesInCatalogProps[]>(
-    []
-  );
+    for (let index = 0; index < length; index++) {
+      if (regex.test(allMortyCharactersCopy[index].name)) {
+        filteredMortyCharactersCopy.push(allMortyCharactersCopy[index]);
+      }
+    }
+    console.log(filteredMortyCharactersCopy);
 
-  async function loadCharacters(page?: string, pageNumber?: number) {
-    const response = await api.get<CatalogProps>(
-      pageNumber ? `character/?page=${pageNumber}` : page || "character"
-    );
-    setMortyCharacters(response.data);
-    setPagesInCatalog(Array.from(Array(response.data.info.pages).keys()));
-    console.log(response.data.info.next);
+    setDisplayedMortyCharacters(filteredMortyCharactersCopy);
+    setPageCount(Math.ceil(filteredMortyCharactersCopy.length / itemsPerPage));
+  };
+
+  async function loadPageData(pageNumber: number) {
+    const pageData = await api
+      .get(`character/?page=${pageNumber}`)
+      .then((response) => response.data.results as Character[]);
+
+    return pageData;
   }
 
   useEffect(() => {
-    loadCharacters();
+    async function loadAllCharacters() {
+      const pages = await api
+        .get("character")
+        .then((response) => response.data.info.pages);
+
+      let charactersData = [] as Character[];
+      for (let index = 1; index <= pages; index++) {
+        await loadPageData(index).then((data) => charactersData.push(...data));
+      }
+      setAllMortyCharacters(charactersData);
+      setDisplayedMortyCharacters(charactersData);
+      setMortyCharactersCount(charactersData.length);
+      setPageCount(Math.ceil(charactersData.length / itemsPerPage));
+    }
+
+    loadAllCharacters();
   }, []);
 
   return (
     <>
-      <div className={styles.cardContainer}>
-        {mortyCharacters?.results.map((character) => (
-          <div key={character.id} className={styles.card}>
-            <Image
-              src={character.image}
-              alt={character.name}
-              className={styles.avatar}
-              layout="responsive"
-              width={300}
-              height={300}
-            />
-            <p>
-              {character.name},{character.species},{character.status}
-            </p>
-          </div>
-        ))}
+      <div className={styles.searchBarContainer}>
+        <input
+          type="text"
+          onChange={(event) => {
+            setInputText(event.target.value);
+          }}
+          className={styles.searchBar}
+        />
+
+        <button
+          onClick={() => {
+            searchName(inputText);
+          }}
+        >
+          Search
+        </button>
       </div>
 
-      <div className={styles.paginationButtons}>
-        <button
-          onClick={() => {
-            loadCharacters(mortyCharacters?.info.prev);
-            console.log(mortyCharacters?.info);
-            console.log(pagesInCatalog);
-          }}
-        >
-          Back Button
-        </button>
-
-        {pagesInCatalog.map((pageNumber) => (
-          <button
-            key={pageNumber as number}
-            onClick={() =>
-              loadCharacters(undefined, (pageNumber as number) + 1)
-            }
-            className={styles.pageButton}
-          >
-            {(pageNumber as number) + 1}
-          </button>
-        ))}
-
-        <button
-          onClick={() => {
-            loadCharacters(mortyCharacters?.info.next);
-            console.log(mortyCharacters?.info);
-          }}
-        >
-          Forward Button
-        </button>
+      <div className={styles.cardContainer}>
+        {displayedMortyCharacters
+          .slice(itemOffset, endOffset)
+          .map((character) => (
+            <div key={character.id} className={styles.card}>
+              <Image
+                src={character.image}
+                alt={character.name}
+                className={styles.avatar}
+                layout="responsive"
+                width={300}
+                height={300}
+              />
+              <p>
+                {character.name},{character.species},{character.status}
+              </p>
+            </div>
+          ))}
       </div>
     </>
   );
