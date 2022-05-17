@@ -1,0 +1,12 @@
+.characterDescription {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: grey;
+  min-width: 75rem;
+}
+
+.imageWrapper li {
+  font-size: 3rem;
+}

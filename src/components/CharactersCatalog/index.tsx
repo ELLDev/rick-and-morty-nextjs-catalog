@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
-import { api } from "../../../src/services/api";
+import { useEffect, useState } from "react";
 
 import styles from "./styles.module.css";
 
@@ -8,27 +8,32 @@ interface Character {
   id: number;
   name: string;
   image: string;
-  gender: string;
+  // gender: string;
   species: string;
   status: string;
 }
 
 interface CharactersCatalogProps {
+  allMortyCharacters: Character[];
   itemsPerPage: number;
   itemOffset: number;
+  setItemOffset: (itemOffset: number) => void;
   endOffset: number;
   setMortyCharactersCount: (mortyCharactersCount: number) => void;
   setPageCount: (pageCount: number) => void;
+  setIsSearchNameActive: (isSearchNameActive: boolean) => void;
 }
 
 export default function CharactersCatalog({
   itemsPerPage,
   itemOffset,
+  setItemOffset,
   endOffset,
   setMortyCharactersCount,
   setPageCount,
+  allMortyCharacters,
+  setIsSearchNameActive,
 }: CharactersCatalogProps) {
-  const [allMortyCharacters, setAllMortyCharacters] = useState<Character[]>([]);
   const [displayedMortyCharacters, setDisplayedMortyCharacters] = useState<
     Character[]
   >([]);
@@ -45,37 +50,33 @@ export default function CharactersCatalog({
         filteredMortyCharactersCopy.push(allMortyCharactersCopy[index]);
       }
     }
-    console.log(filteredMortyCharactersCopy);
 
     setDisplayedMortyCharacters(filteredMortyCharactersCopy);
     setPageCount(Math.ceil(filteredMortyCharactersCopy.length / itemsPerPage));
+    setItemOffset(0);
+    setMortyCharactersCount(filteredMortyCharactersCopy.length);
+    filteredMortyCharactersCopy.length === allMortyCharacters.length
+      ? setIsSearchNameActive(false)
+      : setIsSearchNameActive(true);
   };
 
-  async function loadPageData(pageNumber: number) {
-    const pageData = await api
-      .get(`character/?page=${pageNumber}`)
-      .then((response) => response.data.results as Character[]);
-
-    return pageData;
-  }
-
   useEffect(() => {
-    async function loadAllCharacters() {
-      const pages = await api
-        .get("character")
-        .then((response) => response.data.info.pages);
+    // for (
+    //   let character = 0;
+    //   character < allMortyCharacters.length;
+    //   character++
+    // ) {
 
-      let charactersData = [] as Character[];
-      for (let index = 1; index <= pages; index++) {
-        await loadPageData(index).then((data) => charactersData.push(...data));
-      }
-      setAllMortyCharacters(charactersData);
-      setDisplayedMortyCharacters(charactersData);
-      setMortyCharactersCount(charactersData.length);
-      setPageCount(Math.ceil(charactersData.length / itemsPerPage));
-    }
+    //   router.push({
+    //     pathname: `/character/1`,
+    //     // pathname: `/character/${allMortyCharacters[character].id}`,
+    //     query: { characterData: JSON.stringify(allMortyCharacters[character]) as string },
+    //   });
+    // }
 
-    loadAllCharacters();
+    setDisplayedMortyCharacters(allMortyCharacters);
+    setMortyCharactersCount(allMortyCharacters.length);
+    setPageCount(Math.ceil(allMortyCharacters.length / itemsPerPage));
   }, []);
 
   return (
@@ -103,17 +104,32 @@ export default function CharactersCatalog({
           .slice(itemOffset, endOffset)
           .map((character) => (
             <div key={character.id} className={styles.card}>
-              <Image
-                src={character.image}
-                alt={character.name}
-                className={styles.avatar}
-                layout="responsive"
-                width={300}
-                height={300}
-              />
-              <p>
-                {character.name},{character.species},{character.status}
-              </p>
+              <Link
+                href={{
+                  pathname: `/character/${character.id}`,
+                  query: {
+                    name: character.name,
+                    image: character.image,
+                    // gender: character.gender,
+                    species: character.species,
+                    status: character.status,
+                  },
+                }}
+              >
+                <a>
+                  <Image
+                    src={character.image}
+                    alt={character.name}
+                    className={styles.avatar}
+                    layout="responsive"
+                    width={300}
+                    height={300}
+                  />
+                  <p>
+                    {character.name},{character.species},{character.status}
+                  </p>
+                </a>
+              </Link>
             </div>
           ))}
       </div>
