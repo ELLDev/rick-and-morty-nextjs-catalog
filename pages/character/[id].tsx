@@ -31,8 +31,8 @@ export async function getStaticPaths() {
   }
 
   return {
-    paths: charactersId.map((id) => ({
-      params: { id: id.toString() },
+    paths: charactersId.map((character) => ({
+      params: { id: character.id.toString() },
     })),
     fallback: false,
   };
