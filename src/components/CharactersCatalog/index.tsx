@@ -61,23 +61,11 @@ export default function CharactersCatalog({
   };
 
   useEffect(() => {
-    // for (
-    //   let character = 0;
-    //   character < allMortyCharacters.length;
-    //   character++
-    // ) {
-
-    //   router.push({
-    //     pathname: `/character/1`,
-    //     // pathname: `/character/${allMortyCharacters[character].id}`,
-    //     query: { characterData: JSON.stringify(allMortyCharacters[character]) as string },
-    //   });
-    // }
-
+    ``;
     setDisplayedMortyCharacters(allMortyCharacters);
     setMortyCharactersCount(allMortyCharacters.length);
     setPageCount(Math.ceil(allMortyCharacters.length / itemsPerPage));
-  }, []);
+  }, [allMortyCharacters, itemsPerPage, setMortyCharactersCount, setPageCount]);
 
   return (
     <>
@@ -104,18 +92,7 @@ export default function CharactersCatalog({
           .slice(itemOffset, endOffset)
           .map((character) => (
             <div key={character.id} className={styles.card}>
-              <Link
-                href={{
-                  pathname: `/character/${character.id}`,
-                  query: {
-                    name: character.name,
-                    image: character.image,
-                    // gender: character.gender,
-                    species: character.species,
-                    status: character.status,
-                  },
-                }}
-              >
+              <Link href={`/character/${character.id}`}>
                 <a>
                   <Image
                     src={character.image}
