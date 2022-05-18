@@ -58,13 +58,13 @@ export default function PaginatedItems({
         breakLabel="⋯"
         nextLabel=">"
         previousLabel="<"
-        containerClassName="flex flex-1 flex-row gap-6 items-center justify-center text-xl md:text-2xl mb-5 md:m-10 md:gap-10"
+        containerClassName="flex flex-1 flex-row gap-6 items-center justify-center text-xl md:text-2xl mb-5 md:m-10 md:gap-10 xl:text-3xl xl:gap-12 xl:my-14"
         pageClassName=""
         previousClassName={isSearchNameActive ? "hidden" : "block"}
         nextClassName={isSearchNameActive ? "hidden" : "block"}
-        pageLinkClassName="text-zinc-900 px-2 rounded-full ring-1 ring-blue-500 ring-offset-4 ring-offset-slate-200"
-        previousLinkClassName="font-NanumGothic px-2 py-0.5 font-bold text-[color:#08BAE3] rounded-full ring-1 ring-zinc-700 ring-offset-4 ring-offset-slate-200"
-        nextLinkClassName="font-NanumGothic px-2 py-0.5 font-bold text-[color:#08BAE3] rounded-full ring-1 ring-zinc-700 ring-offset-4 ring-offset-slate-200"
+        pageLinkClassName="text-zinc-900 px-2 rounded-full ring-1 ring-blue-500 ring-offset-4 ring-offset-slate-200 xl:ring-offset-8 xl:ring-offset-slate-200 xl:px-3 xl:hover:ring-offset-transparent xl:ease-in-out xl:transition-all"
+        previousLinkClassName="font-NanumGothic px-2 py-0.5 font-bold text-[color:#08BAE3] rounded-full ring-1 ring-zinc-700 ring-offset-4 ring-offset-slate-200 xl:px-3 xl:hover:ring-4 xl:ease-in-out xl:transition-all"
+        nextLinkClassName="font-NanumGothic px-2 py-0.5 font-bold text-[color:#08BAE3] rounded-full ring-1 ring-zinc-700 ring-offset-4 ring-offset-slate-200 xl:px-3 xl:hover:ring-4 xl:ease-in-out xl:transition-all"
         breakClassName="text-zinc-900"
         breakLinkClassName=""
         renderOnZeroPageCount={null || undefined}

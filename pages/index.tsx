@@ -32,7 +32,7 @@ export default function Home({ allMortyCharacters }: HomeProps) {
       </Head>
 
       <main>
-        <h1 className="bg-slate-700 text-5xl md:text-7xl text-[color:#08BAE3] font-black text-center p-4 md:py-6 font-Roboto drop-shadow-outlined">
+        <h1 className="bg-slate-700 text-5xl md:text-7xl xl:text-8xl text-[color:#08BAE3] font-black text-center p-4 md:py-6 xl:py-10 font-Roboto drop-shadow-outlined">
           <span className="drop-shadow-outlined">
             Rick and Morty Characters
           </span>

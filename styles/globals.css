@@ -16,9 +16,10 @@ body {
 
 @layer utilities {
   .active {
-    @apply bg-blue-500;
+    @apply rounded-full;
   }
   .active a {
     @apply text-white ring-offset-[transparent];
+    @apply bg-blue-500;
   }
 }

@@ -68,19 +68,19 @@ export default function CharactersCatalog({
 
   return (
     <>
-      <div className="m-8 md:mx-0 rounded-lg">
+      <div className="m-8 md:mx-0 rounded-lg xl:my-12">
         <form
           onSubmit={(event: FormEvent) => event.preventDefault()}
           className="flex flex-1 md:justify-center"
         >
           <input
-            className="pl-3 p-2 bg-slate-300 w-10/12 md:w-6/12 rounded-l-lg text-2xl md:text-4xl focus:border-[color:#08BAE3] focus:ring-[color:#08BAE3] focus:ring-2 focus:outline-none"
+            className="pl-3 p-2 bg-slate-300 w-10/12 md:w-6/12 xl:w-4/12 rounded-l-lg text-2xl md:text-4xl focus:border-[color:#08BAE3] focus:ring-[color:#08BAE3] focus:ring-2 focus:outline-none xl:focus:bg-slate-100 xl:ease-in-out xl:transition-all xl:hover:bg-slate-100"
             type="text"
             onChange={(event) => setInputText(event.target.value)}
           />
 
           <button
-            className="w-2/12 md:w-1/12 bg-[color:#08BAE3] rounded-r-lg focus:border-zinc-800  focus:ring-zinc-800 focus:ring-2 focus:outline-none"
+            className="w-2/12 md:w-1/12 bg-[color:#08BAE3] rounded-r-lg focus:border-zinc-800  focus:ring-zinc-800 focus:ring-2 focus:outline-none xl:hover:ease-in-out xl:transition-colors xl:hover:bg-[#3dcbeb]"
             type="submit"
             onClick={() => searchName(inputText)}
           >
@@ -93,41 +93,41 @@ export default function CharactersCatalog({
         </form>
       </div>
 
-      <div className="flex flex-1 flex-col gap-5 p-8 md:justify-center md:p-0">
+      <div className="flex flex-1 flex-col gap-5 p-8 md:justify-center md:p-0 xl:flex-wrap xl:flex-row xl:gap-20">
         {displayedMortyCharacters
           .slice(itemOffset, endOffset)
           .map((character) => (
-            <div key={character.id} className="">
+            <div key={character.id} className="group">
               <Link href={`/character/${character.id}`}>
                 <a
                   target="_blank"
-                  className="bg-slate-400 rounded-3xl flex flex-1 flex-col md:flex-row drop-shadow-md md:mx-12"
+                  className="bg-slate-400 rounded-3xl flex flex-1 flex-col md:flex-row drop-shadow-md md:mx-12 xl:flex-col xl:m-0 xl:drop-shadow-xl"
                 >
-                  <div className="min-w-[300px]">
+                  <div className="min-w-[300px] xl:w-[400px]">
                     <Image
                       src={character.image}
                       alt={character.name}
-                      className="rounded-t-3xl md:rounded-none md:rounded-l-3xl saturate-125"
+                      className="rounded-t-3xl md:rounded-none md:rounded-l-3xl xl:rounded-none xl:rounded-t-3xl saturate-125"
                       layout="responsive"
                       width={300}
                       height={300}
                     />
                   </div>
-                  <div className="p-4 md:p-0 flex flex-1 flex-col md:justify-center md:gap-2 md:mx-4">
-                    <div>
-                      <h2 className="tracking-wide text-4xl md:text-5xl font-black text-white font-Roboto underline underline-offset-1 lg:hover:text-orange-500 md:max-w-[calc(100vw-396px-16px)] md:whitespace-nowrap md:truncate">
+                  <div className="p-4 md:p-0 flex flex-1 flex-col md:justify-center md:gap-2 md:mx-4 xl:m-0 xl:p-8">
+                    <div className="">
+                      <h2 className="tracking-wide text-4xl md:text-5xl font-black text-white font-Roboto underline underline-offset-1 md:max-w-[calc(100vw-396px-16px)] md:whitespace-nowrap md:truncate xl:group-hover:text-orange-500 xl:group-hover:ease-in-out xl:transition-colors xl:max-w-[336px]">
                         {character.name}
                       </h2>
 
-                      <div className="flex flex-1 items-center flex-row mt-0.5 md:mt-1">
+                      <div className="flex flex-1 items-center flex-row mt-0.5 md:mt-1 xl:group:hover:animate-ping">
                         <Circle
-                          className="w-3 h-3 mr-1 md:w-4 md:h-4"
+                          className="w-3 h-3 mr-1 md:w-4 md:h-4 md:mr-1.5"
                           color={
-                            character.status === "Alive" ? "#11f30d" : "#ee1e1e"
+                            character.status === "Alive" ? "#11f30d" : character.status === "Dead" ? "#ee1e1e" : "#7e7e7e"
                           }
                           weight="fill"
                         />
-                        <span className="text-white font-Roboto font-medium md:text-2xl">
+                        <span className="text-white font-Roboto font-medium md:text-2xl capitalize">
                           {character.status} - {character.species}
                         </span>
                       </div>
@@ -137,7 +137,7 @@ export default function CharactersCatalog({
                       <h5 className="text-slate-50 tracking-wide underline font-Roboto font-medium text-lg mt-2 md:text-2xl">
                         Origin:
                       </h5>
-                      <p className="text-white font-Roboto text-xl tracking-wide md:text-2xl md:mt-1 md:max-w-[calc(100vw-396px-16px)] md:whitespace-nowrap md:truncate">
+                      <p className="text-white font-Roboto text-xl tracking-wide md:text-2xl md:mt-1 md:max-w-[calc(100vw-396px-16px)] md:whitespace-nowrap md:truncate first-letter:capitalize xl:max-w-[336px]">
                         {character.origin.name}
                       </p>
                     </div>
@@ -146,7 +146,7 @@ export default function CharactersCatalog({
                       <h5 className="text-slate-50 tracking-wide underline font-Roboto font-medium text-lg md:mt-2 md:text-2xl">
                         Location:
                       </h5>
-                      <p className="text-white font-Roboto text-xl tracking-wide md:text-2xl md:mt-1 md:max-w-[calc(100vw-396px-16px)] md:whitespace-nowrap md:truncate">
+                      <p className="text-white font-Roboto text-xl tracking-wide md:text-2xl md:mt-1 md:max-w-[calc(100vw-396px-16px)] md:whitespace-nowrap md:truncate first-letter:capitalize xl:max-w-[336px]">
                         {character.location.name}
                       </p>
                     </div>
