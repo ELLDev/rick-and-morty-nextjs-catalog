@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { InferGetStaticPropsType } from "next";
 import { api } from "../../src/services/api";
 
@@ -10,9 +9,10 @@ interface Character {
   id: number;
   name: string;
   image: string;
-  // gender: string;
   species: string;
   status: string;
+  origin: { name: string };
+  location: { name: string };
 }
 
 interface CharactersId {
@@ -54,7 +54,6 @@ export async function getStaticProps({ params }: any) {
 export default function CharacterDetails({
   characterData,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-
   return (
     <>
       <Head>

@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import CharactersCatalog from "../CharactersCatalog";
-
-import styles from "./styles.module.css";
+import CharactersCatalog from "./CharactersCatalog";
 
 interface Character {
   id: number;
   name: string;
   image: string;
-  // gender: string;
   species: string;
   status: string;
+  origin: { name: string };
+  location: { name: string };
 }
 
 interface PaginatedItemsProps {
@@ -53,21 +52,21 @@ export default function PaginatedItems({
       <ReactPaginate
         onPageChange={handlePageClick}
         pageCount={pageCount}
-        pageRangeDisplayed={3}
-        marginPagesDisplayed={2}
+        pageRangeDisplayed={1}
+        marginPagesDisplayed={1}
         activeClassName="active"
-        breakLabel="..."
-        nextLabel="next >"
-        previousLabel="< previous"
-        containerClassName={styles.paginationContainer}
-        pageClassName={styles.paginationButtons}
-        previousClassName={isSearchNameActive ? styles.hidePageButton : styles.previousPageButton}
-        nextClassName={isSearchNameActive ? styles.hidePageButton : styles.nextPageButton}
-        // pageLinkClassName={styles.previousPageButton}
-        // previousLinkClassName="page-link"
-        // nextLinkClassName="page-link"
-        // breakClassName="page-item"
-        // breakLinkClassName="page-link"
+        breakLabel="⋯"
+        nextLabel=">"
+        previousLabel="<"
+        containerClassName="flex flex-1 flex-row gap-6 items-center justify-center text-xl mb-5"
+        pageClassName=""
+        previousClassName={isSearchNameActive ? "hidden" : "block"}
+        nextClassName={isSearchNameActive ? "hidden" : "block"}
+        pageLinkClassName="text-zinc-900 px-2 rounded-full ring-1 ring-blue-500 ring-offset-4 ring-offset-slate-200"
+        previousLinkClassName="font-NanumGothic px-2 py-0.5 font-bold text-[color:#08BAE3] rounded-full ring-1 ring-zinc-700 ring-offset-4 ring-offset-slate-200"
+        nextLinkClassName="font-NanumGothic px-2 py-0.5 font-bold text-[color:#08BAE3] rounded-full ring-1 ring-zinc-700 ring-offset-4 ring-offset-slate-200"
+        breakClassName="text-zinc-900"
+        breakLinkClassName=""
         renderOnZeroPageCount={null || undefined}
       />
     </>

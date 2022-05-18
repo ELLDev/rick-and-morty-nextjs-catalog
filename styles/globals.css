@@ -1,17 +1,24 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  --white-500: #fffefd;
-  --black-500: #1b1c1e;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
-  background: var(--white-500);
-  color: var(--black-500);
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  /* @apply bg-[#202329] text-zinc-100; */
+  @apply bg-slate-200 text-zinc-700;
+}
+
+@layer base {
+  @font-face {
+    font-family: "RickAndMorty2";
+    src: url("/fonts/RickAndMorty.woff2") format("woff2");
+  }
+}
+
+@layer utilities {
+  .active {
+    @apply bg-blue-500;
+  }
+  .active a {
+    @apply text-white ring-offset-[transparent];
+  }
 }
