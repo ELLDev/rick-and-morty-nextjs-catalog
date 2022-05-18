@@ -58,7 +58,7 @@ export default function PaginatedItems({
         breakLabel="⋯"
         nextLabel=">"
         previousLabel="<"
-        containerClassName="flex flex-1 flex-row gap-6 items-center justify-center text-xl mb-5"
+        containerClassName="flex flex-1 flex-row gap-6 items-center justify-center text-xl md:text-2xl mb-5 md:m-10 md:gap-10"
         pageClassName=""
         previousClassName={isSearchNameActive ? "hidden" : "block"}
         nextClassName={isSearchNameActive ? "hidden" : "block"}
