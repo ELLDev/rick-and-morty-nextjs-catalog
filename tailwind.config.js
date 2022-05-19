@@ -19,12 +19,12 @@ module.exports = {
         125: '1.25',
       },
       dropShadow: {
-        'outlined': [
-          '-1px 1px 0 #000',
-          '1px 1px 0 #000',
-          '1px -1px 0 #000',
-          '-1px -1px 0 #000'
+        '3d': [
+          '4px 4px 0px #08BAE3',
         ],
+        '3dblack': [
+          '4px 4px 0px #000',
+        ]
       },
       colors: {
         transparent: 'transparent',

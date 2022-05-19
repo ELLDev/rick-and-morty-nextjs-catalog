@@ -99,7 +99,9 @@ export default function CharacterDetails({
               height={300}
             />
 
-            <Link href={`/character/${character.id - 1}`}>
+            <Link
+              href={`/character/${character.id === 1 ? 1 : character.id - 1}`}
+            >
               <a className="group m-0 p-1 bg-rose-500 rounded-full flex-1 flex justify-center items-center absolute left-2 top-[43%] md:left-5 2xl:left-8  hover:bg-rose-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-stone-900 focus:ring-rose-500 transition-colors">
                 <button
                   className="group-hover:animate-bouncex disabled:group-hover:animate-none focus:outline-none"
@@ -187,7 +189,7 @@ export default function CharacterDetails({
               </div>
 
               <Link href={"/"}>
-                <a className="hidden lg:font-Roboto lg:bg-rose-500 lg:rounded-full lg:border-transparent lg:xl:flex-1 lg:justify-center lg:items-center hover:bg-rose-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-stone-900 focus:ring-rose-500 transition-colors lg:p-5 text-4xl lg:flex 2xl:p-8">
+                <a className="hidden lg:font-Roboto lg:bg-rose-500 lg:rounded-full lg:border-transparent lg:flex-1 lg:justify-center lg:items-center hover:bg-rose-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-stone-900 focus:ring-rose-500 transition-colors lg:p-5 text-4xl lg:flex 2xl:p-8">
                   <button className="text-white w-10/12 ml-6 hidden lg:block">
                     Back To Catalog
                   </button>
