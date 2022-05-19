@@ -99,10 +99,7 @@ export default function CharactersCatalog({
           .map((character) => (
             <div key={character.id} className="group">
               <Link href={`/character/${character.id}`}>
-                <a
-                  target="_blank"
-                  className="bg-slate-400 rounded-3xl flex flex-1 flex-col md:flex-row drop-shadow-md md:mx-12 xl:flex-col xl:m-0 xl:drop-shadow-xl"
-                >
+                <a className="bg-slate-400 rounded-3xl flex flex-1 flex-col md:flex-row drop-shadow-md md:mx-12 xl:flex-col xl:m-0 xl:drop-shadow-xl">
                   <div className="min-w-[300px] xl:w-[400px]">
                     <Image
                       src={character.image}
@@ -119,11 +116,15 @@ export default function CharactersCatalog({
                         {character.name}
                       </h2>
 
-                      <div className="flex flex-1 items-center flex-row mt-0.5 md:mt-1 xl:group:hover:animate-ping">
+                      <div className="flex flex-1 items-center flex-row mt-0.5 md:mt-1">
                         <Circle
                           className="w-3 h-3 mr-1 md:w-4 md:h-4 md:mr-1.5"
                           color={
-                            character.status === "Alive" ? "#11f30d" : character.status === "Dead" ? "#ee1e1e" : "#7e7e7e"
+                            character.status === "Alive"
+                              ? "#11f30d"
+                              : character.status === "Dead"
+                              ? "#ee1e1e"
+                              : "#7e7e7e"
                           }
                           weight="fill"
                         />
