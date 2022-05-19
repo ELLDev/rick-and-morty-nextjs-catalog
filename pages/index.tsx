@@ -48,10 +48,9 @@ export const getStaticProps: GetStaticProps = async () => {
     return pageData;
   }
 
-  // const pagesInBackEnd = await api
-  //   .get("character")
-  //   .then((response) => response.data.info.pages);
-  const pagesInBackEnd = 10;
+  const pagesInBackEnd = await api
+    .get("character")
+    .then((response) => response.data.info.pages);
 
   let allMortyCharacters = [] as Character[];
   for (let pageIndex = 1; pageIndex <= pagesInBackEnd; pageIndex++) {
