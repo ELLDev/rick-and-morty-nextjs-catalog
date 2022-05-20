@@ -108,7 +108,7 @@ export default function CharacterDetails({
                   disabled={character.id === 1 ? true : false}
                 >
                   <CaretLeft
-                    className="w-8 h-8 md:w-14 md:h-14 2xl:w-24 2xl:h-24"
+                    className="w-8 h-8 md:w-14 md:h-14 2xl:w-18 2xl:h-18"
                     color={character.id === 1 ? "#acacac" : "#fff"}
                     weight="regular"
                   />
@@ -120,7 +120,7 @@ export default function CharacterDetails({
               <a className="group m-0 p-1 bg-rose-500 rounded-full flex-1 flex justify-center items-center absolute right-2 top-[43%] md:right-5 2xl:right-8  hover:bg-rose-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-stone-900 focus:ring-rose-500 transition-colors">
                 <button className="group-hover:animate-bouncex disabled:group-hover:animate-none focus:outline-none">
                   <CaretRight
-                    className="w-8 h-8 md:w-14 md:h-14 2xl:w-24 2xl:h-24"
+                    className="w-8 h-8 md:w-14 md:h-14 2xl:w-18 2xl:h-18"
                     color="#ffffff"
                     weight="regular"
                   />
@@ -141,7 +141,7 @@ export default function CharacterDetails({
           </div>
 
           <div className="group">
-            <div className="p-4 flex flex-1 flex-col md:justify-center md:p-8 xl:m-0 md:gap-5 lg:py-0 lg:px-6 lg:gap-8 xl:gap-10 xl:mx-auto 2xl:pl-12 2xl:pr-[calc(100vh-52vw)] 2xl:gap-[3vw]">
+            <div className="p-4 flex flex-1 flex-col md:justify-center md:p-8 xl:m-0 md:gap-5 lg:py-0 lg:px-6 lg:gap-8 xl:gap-10 xl:mx-auto xl:pl-12 2xl:gap-[3vw] 2xl:w-[calc(100vw-100vh-3rem)] 2xl:pr-0">
               <div>
                 <div className="flex flex-1 items-center flex-row mt-0.5 md:mt-1">
                   <Circle
@@ -155,46 +155,46 @@ export default function CharacterDetails({
                     }
                     weight="fill"
                   />
-                  <span className="text-white font-Roboto font-medium text-xl md:text-3xl capitalize 2xl:text-[clamp(2.5rem,2.5vw,4rem)]">
+                  <span className="text-white font-Roboto font-medium text-xl md:text-2xl capitalize">
                     {character.status} - {character.species}
                   </span>
                 </div>
               </div>
 
               <div>
-                <h5 className="text-slate-200 tracking-wide underline font-Roboto font-medium text-xl mt-2 md:text-3xl 2xl:text-[clamp(2.5rem,2.5vw,4rem)]">
+                <h5 className="text-slate-200 tracking-wide underline font-Roboto font-medium text-xl mt-2 md:text-2xl">
                   Origin:
                 </h5>
-                <p className="text-white font-Roboto text-2xl tracking-wide md:text-4xl mt-2 first-letter:capitalize 2xl:text-[clamp(2.75rem,2.75vw,4.5rem)] 2xl:mt-[2vw] 2xl:leading-tight">
+                <p className="text-white font-Roboto text-2xl tracking-wide md:text-3xl mt-2 first-letter:capitalize 2xl:mt-4 2xl:leading-tight">
                   {character.origin.name}
                 </p>
               </div>
 
               <div>
-                <h5 className="text-slate-200 tracking-wide underline font-Roboto font-medium text-xl mt-2 md:text-3xl 2xl:text-[clamp(2.5rem,2.5vw,4rem)]">
+                <h5 className="text-slate-200 tracking-wide underline font-Roboto font-medium text-xl mt-2 md:text-2xl">
                   Location:
                 </h5>
-                <p className="text-white font-Roboto text-2xl tracking-wide md:text-4xl mt-2 first-letter:capitalize 2xl:text-[clamp(2.75rem,2.75vw,4.5rem)] 2xl:mt-[2vw] 2xl:leading-tight">
+                <p className="text-white font-Roboto text-2xl tracking-wide md:text-3xl mt-2 first-letter:capitalize 2xl:mt-4 2xl:leading-tight">
                   {character.location.name} - {locationType}
                 </p>
               </div>
 
               <div>
-                <h5 className="text-slate-200 tracking-wide underline font-Roboto font-medium text-xl mt-2 md:text-3xl 2xl:text-[clamp(2.5rem,2.5vw,4rem)]">
+                <h5 className="text-slate-200 tracking-wide underline font-Roboto font-medium text-xl mt-2 md:text-2xl">
                   First seen in:
                 </h5>
-                <p className="text-white font-Roboto text-2xl tracking-wide md:text-4xl mt-2 first-letter:capitalize 2xl:text-[clamp(2.75rem,2.75vw,4.5rem)] 2xl:mt-[2vw] 2xl:leading-tight">
+                <p className="text-white font-Roboto text-2xl tracking-wide md:text-3xl mt-2 first-letter:capitalize 2xl:mt-4 2xl:leading-tight">
                   {episode.name} - episode {episode.id}
                 </p>
               </div>
 
               <Link href={"/"}>
-                <a className="hidden lg:font-Roboto lg:bg-rose-500 lg:rounded-full lg:border-transparent lg:flex-1 lg:justify-center lg:items-center hover:bg-rose-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-stone-900 focus:ring-rose-500 transition-colors lg:p-5 text-4xl lg:flex 2xl:p-8">
+                <a className="hidden lg:font-Roboto lg:bg-rose-500 lg:rounded-full lg:border-transparent lg:flex-1 lg:justify-center lg:items-center hover:bg-rose-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-stone-900 focus:ring-rose-500 transition-colors lg:p-5 text-3xl lg:flex 2xl:p-8">
                   <button className="text-white w-10/12 ml-6 hidden lg:block">
                     Back To Catalog
                   </button>
                   <ArrowUDownRight
-                    className="w-10 h-10 hidden lg:block"
+                    className="w-8 h-8 hidden lg:block"
                     color="#ffffff"
                     weight="bold"
                   />
