@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
-import { Circle, MagnifyingGlass } from "phosphor-react";
+import { Circle, MagnifyingGlass, XCircle } from "phosphor-react";
 
 interface Character {
   id: number;
@@ -39,6 +39,11 @@ export default function CharactersCatalog({
   >([]);
   const [inputText, setInputText] = useState("");
 
+  const handleClearSearchBar = () => {
+    setInputText("");
+    searchName("");
+  };
+
   const searchName = (name: string) => {
     let allMortyCharactersCopy = { ...allMortyCharacters };
     let length = allMortyCharacters.length || 0;
@@ -68,25 +73,35 @@ export default function CharactersCatalog({
 
   return (
     <>
-      <div className="m-8 md:mx-0 rounded-lg xl:my-12">
+      <div className="m-8 rounded-lg xl:my-12 md:mx-[21vw] xl:mx-[28vw] 2xl:mx-[32vw]">
         <form
           onSubmit={(event: FormEvent) => event.preventDefault()}
-          className="flex flex-1 md:justify-center"
+          className="flex flex-1 md:justify-center relative"
         >
           <input
-            className="pl-3 p-2 bg-slate-300 w-10/12 md:w-6/12 xl:w-4/12 rounded-l-lg text-2xl md:text-4xl focus:border-[color:#08BAE3] focus:ring-[color:#08BAE3] focus:ring-2 focus:outline-none xl:focus:bg-slate-100 xl:ease-in-out xl:transition-all xl:hover:bg-slate-100"
+            className="pl-3 p-2 bg-slate-300 w-10/12 md:w-11/12 rounded-l-lg text-2xl md:text-4xl focus:border-[color:#08BAE3] focus:ring-[color:#08BAE3] focus:ring-2 focus:outline-none xl:focus:bg-slate-100 xl:ease-in-out xl:transition-all xl:hover:bg-slate-100 2xl:text-5xl"
             type="text"
+            value={inputText}
             onChange={(event) => setInputText(event.target.value)}
           />
 
+          <button className="group" disabled={inputText === ""} type="reset">
+            <XCircle
+              onClick={handleClearSearchBar}
+              weight="bold"
+              className="group-disabled:hidden absolute opacity-50 w-6 h-6 top-3 right-[calc(2.5rem+8.33%)] md:top-4 md:right-[calc(10.5vw+0.5rem)] xl:top-[0.875rem] xl:right-[calc(8vw+0.5rem)] xl:w-7 xl:h-7 2xl:w-10 2xl:h-10 2xl:top-5 2xl:right-[calc(7vw+0.5rem)] hover:opacity-90"
+              color="#000"
+            />
+          </button>
+
           <button
-            className="w-2/12 md:w-1/12 bg-[color:#08BAE3] rounded-r-lg focus:border-zinc-800  focus:ring-zinc-800 focus:ring-2 focus:outline-none xl:hover:ease-in-out xl:transition-colors xl:hover:bg-[#3dcbeb]"
+            className="w-2/12 md:w-2/12 bg-[color:#08BAE3] rounded-r-lg focus:border-zinc-800  focus:ring-zinc-800 focus:ring-2 focus:outline-none xl:hover:ease-in-out xl:transition-colors xl:hover:bg-[#3dcbeb]"
             type="submit"
             onClick={() => searchName(inputText)}
           >
             <MagnifyingGlass
               weight="bold"
-              className="w-5 h-5 m-auto md:w-6 md:h-6"
+              className="w-5 h-5 m-auto md:w-6 md:h-6 xl:h-7 xl:w-7 2xl:w-10 2xl:h-10"
               color="white"
             />
           </button>
